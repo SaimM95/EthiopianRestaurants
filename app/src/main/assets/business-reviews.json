@@ -1,0 +1,47 @@
+{
+    "reviews": [
+        {
+            "id": "ePTcYO9X80G9SgBimV7ljg",
+            "url": "https://www.yelp.com/biz/flavours-of-sheba-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&hrid=ePTcYO9X80G9SgBimV7ljg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "text": "I came here with a friend for dinner and ordered the veggie platter for 1, the beef tibs and spicy beef stew. Originally we were going to get the veggie...",
+            "rating": 5,
+            "time_created": "2019-06-15 11:49:24",
+            "user": {
+                "id": "PRn4n-shao4cI1lHoJKmVA",
+                "profile_url": "https://www.yelp.com/user_details?userid=PRn4n-shao4cI1lHoJKmVA",
+                "image_url": "https://s3-media1.fl.yelpcdn.com/photo/LpJk97QbMdD4RbedNMvuLw/o.jpg",
+                "name": "Bev Y."
+            }
+        },
+        {
+            "id": "nSIY_8SP9BXDcrtvvflMyg",
+            "url": "https://www.yelp.com/biz/flavours-of-sheba-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&hrid=nSIY_8SP9BXDcrtvvflMyg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "text": "I had a groupon and a WagJag. Be warned, they are not accepting the WagJag vouchers.\nSo had the platter for 2 (19.99) plus shiro 9.99 then my friend was...",
+            "rating": 3,
+            "time_created": "2019-11-26 10:06:58",
+            "user": {
+                "id": "szscXVvV67KKYbFA9v65vA",
+                "profile_url": "https://www.yelp.com/user_details?userid=szscXVvV67KKYbFA9v65vA",
+                "image_url": "https://s3-media2.fl.yelpcdn.com/photo/86IZISJLx4tZlLg9PSWZPg/o.jpg",
+                "name": "Janine W."
+            }
+        },
+        {
+            "id": "kzOEhhuIsX7xQOwymimuuw",
+            "url": "https://www.yelp.com/biz/flavours-of-sheba-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&hrid=kzOEhhuIsX7xQOwymimuuw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "text": "I'm a huge fan of Ethiopian food and Flavours of Sheba did not disappoint. \n\nThis quaint restaurant was super friendly, but food did take awhile so keep...",
+            "rating": 4,
+            "time_created": "2019-07-12 18:13:22",
+            "user": {
+                "id": "jqYVWP8RtK5PsmklnTlWTQ",
+                "profile_url": "https://www.yelp.com/user_details?userid=jqYVWP8RtK5PsmklnTlWTQ",
+                "image_url": "https://s3-media1.fl.yelpcdn.com/photo/pKl2jhQ-T65RwK2jtzXqRw/o.jpg",
+                "name": "Sasaa T."
+            }
+        }
+    ],
+    "total": 12,
+    "possible_languages": [
+        "en"
+    ]
+}

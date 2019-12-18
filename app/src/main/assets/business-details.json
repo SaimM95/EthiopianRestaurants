@@ -1,0 +1,92 @@
+{
+    "id": "7mIBNG1OnTdDXg1ojrJvnw",
+    "alias": "flavours-of-sheba-toronto",
+    "name": "Flavours Of Sheba",
+    "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/VxF2fPEZbPxpfEHe_evl8Q/o.jpg",
+    "is_claimed": true,
+    "is_closed": false,
+    "url": "https://www.yelp.com/biz/flavours-of-sheba-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+    "phone": "+14167921449",
+    "display_phone": "+1 416-792-1449",
+    "review_count": 12,
+    "categories": [
+        {
+            "alias": "ethiopian",
+            "title": "Ethiopian"
+        }
+    ],
+    "rating": 4.5,
+    "location": {
+        "address1": "1310 St Clair Avenue W",
+        "address2": "",
+        "address3": null,
+        "city": "Toronto",
+        "zip_code": "M6E 1C1",
+        "country": "CA",
+        "state": "ON",
+        "display_address": [
+            "1310 St Clair Avenue W",
+            "Toronto, ON M6E 1C1",
+            "Canada"
+        ],
+        "cross_streets": ""
+    },
+    "coordinates": {
+        "latitude": 43.67703,
+        "longitude": -79.44849
+    },
+    "photos": [
+        "https://s3-media2.fl.yelpcdn.com/bphoto/VxF2fPEZbPxpfEHe_evl8Q/o.jpg",
+        "https://s3-media2.fl.yelpcdn.com/bphoto/2fovv1Jk-GLTR8xffBYtZQ/o.jpg",
+        "https://s3-media2.fl.yelpcdn.com/bphoto/-fT_drqN-C4XGLpxmCCCmg/o.jpg"
+    ],
+    "hours": [
+        {
+            "open": [
+                {
+                    "is_overnight": false,
+                    "start": "1700",
+                    "end": "2200",
+                    "day": 1
+                },
+                {
+                    "is_overnight": false,
+                    "start": "1700",
+                    "end": "2200",
+                    "day": 2
+                },
+                {
+                    "is_overnight": false,
+                    "start": "1700",
+                    "end": "2200",
+                    "day": 3
+                },
+                {
+                    "is_overnight": false,
+                    "start": "1700",
+                    "end": "2200",
+                    "day": 4
+                },
+                {
+                    "is_overnight": false,
+                    "start": "1700",
+                    "end": "2200",
+                    "day": 5
+                },
+                {
+                    "is_overnight": false,
+                    "start": "1400",
+                    "end": "2200",
+                    "day": 6
+                }
+            ],
+            "hours_type": "REGULAR",
+            "is_open_now": true
+        }
+    ],
+    "transactions": [],
+    "messaging": {
+        "url": "https://www.yelp.com/raq/7mIBNG1OnTdDXg1ojrJvnw?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=g0y5d93vX3SDzAnwoAf7IQ#popup%3Araq",
+        "use_case_text": "Message the Business"
+    }
+}

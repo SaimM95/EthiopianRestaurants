@@ -1,0 +1,407 @@
+{
+    "businesses": [
+        {
+            "id": "7mIBNG1OnTdDXg1ojrJvnw",
+            "alias": "flavours-of-sheba-toronto",
+            "name": "Flavours Of Sheba",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/VxF2fPEZbPxpfEHe_evl8Q/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/flavours-of-sheba-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 12,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 43.67703,
+                "longitude": -79.44849
+            },
+            "transactions": [],
+            "location": {
+                "address1": "1310 St Clair Avenue W",
+                "address2": "",
+                "address3": null,
+                "city": "Toronto",
+                "zip_code": "M6E 1C1",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "1310 St Clair Avenue W",
+                    "Toronto, ON M6E 1C1",
+                    "Canada"
+                ]
+            },
+            "phone": "+14167921449",
+            "display_phone": "+1 416-792-1449",
+            "distance": 17932.3721966431
+        },
+        {
+            "id": "BXxDbTEw91SkS4uPvJ5svg",
+            "alias": "wass-hamilton",
+            "name": "Wass",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/-5UP6_wllJvHsXRHJm-wNw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/wass-hamilton?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 38,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 43.2503,
+                "longitude": -79.8717
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "207 James St S",
+                "address2": "",
+                "address3": "",
+                "city": "Hamilton",
+                "zip_code": "L8P 3A8",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "207 James St S",
+                    "Hamilton, ON L8P 3A8",
+                    "Canada"
+                ]
+            },
+            "phone": "+12893895294",
+            "display_phone": "+1 289-389-5294",
+            "distance": 42661.52323256573
+        },
+        {
+            "id": "xfbjRpE3yhRQ9Zw-D_mBgQ",
+            "alias": "nunu-ethiopian-fusion-toronto",
+            "name": "Nunu Ethiopian Fusion",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/9mMwNGRnBJI2KYIE-BfoEA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/nunu-ethiopian-fusion-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 82,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 43.64296,
+                "longitude": -79.4256599
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "1178 Queen Street W",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M6J 2J5",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "1178 Queen Street W",
+                    "Toronto, ON M6J 2J5",
+                    "Canada"
+                ]
+            },
+            "phone": "+16473516868",
+            "display_phone": "+1 647-351-6868",
+            "distance": 18090.65871402677
+        },
+        {
+            "id": "efFIGYJDnqPnjXlASxF7PQ",
+            "alias": "lucy-ethiopian-kitchen-toronto",
+            "name": "Lucy Ethiopian Kitchen",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/TvmBhV_AMDumemnJsEpDXQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/lucy-ethiopian-kitchen-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 56,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                },
+                {
+                    "alias": "african",
+                    "title": "African"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 43.6841128,
+                "longitude": -79.3207142
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "1690 Danforth Avenue",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M4C",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "1690 Danforth Avenue",
+                    "Toronto, ON M4C",
+                    "Canada"
+                ]
+            },
+            "phone": "+14164060534",
+            "display_phone": "+1 416-406-0534",
+            "distance": 27568.854047940167
+        },
+        {
+            "id": "VquJHaI0aK0js9nq7y6uPw",
+            "alias": "selam-vegan-toronto",
+            "name": "Selam Vegan",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/EpUnV_PVeEWdiu62pBvmzg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/selam-vegan-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 4,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 5.0,
+            "coordinates": {
+                "latitude": 43.6627952,
+                "longitude": -79.4227388
+            },
+            "transactions": [],
+            "location": {
+                "address1": "812B Bloor Street W",
+                "address2": null,
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M6G 1L9",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "812B Bloor Street W",
+                    "Toronto, ON M6G 1L9",
+                    "Canada"
+                ]
+            },
+            "phone": "+16473447225",
+            "display_phone": "+1 647-344-7225",
+            "distance": 19071.265908835332
+        },
+        {
+            "id": "UsKmYp0m8VYWM96tkGm2vQ",
+            "alias": "african-palace-toronto",
+            "name": "African Palace",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/JgwONcuUstOKHmSQX3LSXA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/african-palace-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 88,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                },
+                {
+                    "alias": "african",
+                    "title": "African"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 43.66107,
+                "longitude": -79.42895
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "977 Bloor Street W",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M6H 1L7",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "977 Bloor Street W",
+                    "Toronto, ON M6H 1L7",
+                    "Canada"
+                ]
+            },
+            "phone": "+14165390259",
+            "display_phone": "+1 416-539-0259",
+            "distance": 18535.16457546879
+        },
+        {
+            "id": "KUlm5OuKYJ6nGj0EUwcY9w",
+            "alias": "lalibela-ethiopian-restaurant-toronto-2",
+            "name": "Lalibela Ethiopian Restaurant",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/Fsv2uJxaks_TeZQ0GaFa6Q/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/lalibela-ethiopian-restaurant-toronto-2?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 136,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 3.5,
+            "coordinates": {
+                "latitude": 43.662,
+                "longitude": -79.42474
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "869 Bloor Street W",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M6G 1M4",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "869 Bloor Street W",
+                    "Toronto, ON M6G 1M4",
+                    "Canada"
+                ]
+            },
+            "phone": "+14165356615",
+            "display_phone": "+1 416-535-6615",
+            "distance": 18883.569469463666
+        },
+        {
+            "id": "0-yj2jtzLUHG2b7PpEHyog",
+            "alias": "rendez-vous-toronto",
+            "name": "Rendez-Vous",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/xN0dfKjs6TI7JO2bNIMqgQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/rendez-vous-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 97,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 43.68271,
+                "longitude": -79.32758
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "1408 Danforth Avenue",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M4J 1M9",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "1408 Danforth Avenue",
+                    "Toronto, ON M4J 1M9",
+                    "Canada"
+                ]
+            },
+            "phone": "+14164692513",
+            "display_phone": "+1 416-469-2513",
+            "distance": 26993.698445454294
+        },
+        {
+            "id": "_OecgEhpCDj-5qJNP_KlVg",
+            "alias": "lalibela-ethiopian-restaurant-toronto",
+            "name": "Lalibela Ethiopian Restaurant",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/DocFS71ZkKlKGEB_pB8xIA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/lalibela-ethiopian-restaurant-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 80,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 43.68178,
+                "longitude": -79.33198
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "1202 Danforth Avenue",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M4J",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "1202 Danforth Avenue",
+                    "Toronto, ON M4J",
+                    "Canada"
+                ]
+            },
+            "phone": "+14166450486",
+            "display_phone": "+1 416-645-0486",
+            "distance": 26625.883235892732
+        },
+        {
+            "id": "VxrvGKfba7rBDNLjc-Wy3A",
+            "alias": "ethiopian-house-restaurant-toronto",
+            "name": "Ethiopian House Restaurant",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/oJPNpnP6RckFXLKfalEIrg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/ethiopian-house-restaurant-toronto?adjust_creative=g0y5d93vX3SDzAnwoAf7IQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=g0y5d93vX3SDzAnwoAf7IQ",
+            "review_count": 168,
+            "categories": [
+                {
+                    "alias": "ethiopian",
+                    "title": "Ethiopian"
+                }
+            ],
+            "rating": 3.5,
+            "coordinates": {
+                "latitude": 43.66673,
+                "longitude": -79.3856
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "4 Irwin Avenue",
+                "address2": "",
+                "address3": "",
+                "city": "Toronto",
+                "zip_code": "M4Y 1K9",
+                "country": "CA",
+                "state": "ON",
+                "display_address": [
+                    "4 Irwin Avenue",
+                    "Toronto, ON M4Y 1K9",
+                    "Canada"
+                ]
+            },
+            "phone": "+14169235438",
+            "display_phone": "+1 416-923-5438",
+            "distance": 21987.65712546133
+        }
+    ],
+    "total": 30,
+    "region": {
+        "center": {
+            "longitude": -79.640579,
+            "latitude": 43.59531
+        }
+    }
+}
