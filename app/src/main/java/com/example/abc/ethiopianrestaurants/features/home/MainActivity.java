@@ -1,8 +1,9 @@
-package com.example.abc.ethiopianrestaurants;
+package com.example.abc.ethiopianrestaurants.features.home;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.abc.ethiopianrestaurants.R;
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
 import com.example.abc.ethiopianrestaurants.network.NetworkClientProvider;

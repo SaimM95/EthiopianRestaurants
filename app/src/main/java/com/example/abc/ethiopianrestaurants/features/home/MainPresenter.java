@@ -1,4 +1,4 @@
-package com.example.abc.ethiopianrestaurants;
+package com.example.abc.ethiopianrestaurants.features.home;
 
 import com.example.abc.ethiopianrestaurants.common.BasePresenter;
 import com.example.abc.ethiopianrestaurants.common.Utils;

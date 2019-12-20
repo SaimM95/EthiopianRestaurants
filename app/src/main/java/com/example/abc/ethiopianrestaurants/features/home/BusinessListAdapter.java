@@ -1,4 +1,4 @@
-package com.example.abc.ethiopianrestaurants;
+package com.example.abc.ethiopianrestaurants.features.home;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.abc.ethiopianrestaurants.R;
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
