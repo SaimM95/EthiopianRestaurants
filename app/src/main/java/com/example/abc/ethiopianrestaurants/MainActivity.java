@@ -1,17 +1,15 @@
 package com.example.abc.ethiopianrestaurants;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
 import com.example.abc.ethiopianrestaurants.network.NetworkClientProvider;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 

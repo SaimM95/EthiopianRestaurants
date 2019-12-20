@@ -1,6 +1,7 @@
 package com.example.abc.ethiopianrestaurants.network;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
 import com.example.abc.ethiopianrestaurants.model.Business;
@@ -43,16 +44,20 @@ public class MockNetworkClient implements BusinessNetworkClient {
         Class<T> clazz) {
         String json = loadFileFromAssets(fileName);
 
-        try {
-            T response = new Gson().fromJson(json, clazz);
-            if (response != null) {
-                callback.onSuccess(response);
-            } else {
-                callback.onError(new Exception("Response is null"));
+        // add delay to simulate loading
+        Runnable runnable = () -> {
+            try {
+                T response = new Gson().fromJson(json, clazz);
+                if (response != null) {
+                    callback.onSuccess(response);
+                } else {
+                    callback.onError(new Exception("Response is null"));
+                }
+            } catch (Exception e) {
+                callback.onError(e);
             }
-        } catch (Exception e) {
-            callback.onError(e);
-        }
+        };
+        new Handler().postDelayed(runnable, 2000);
     }
 
     private String loadFileFromAssets(String fileName) {
