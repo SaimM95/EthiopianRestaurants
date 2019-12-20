@@ -1,6 +1,6 @@
 package com.example.abc.ethiopianrestaurants.common;
 
-public class BasePresenter<T> {
+public class BasePresenter<T extends BaseView> {
 
     protected T view;
 
@@ -16,5 +16,16 @@ public class BasePresenter<T> {
         if (view != null) {
             operation.execute();
         }
+    }
+
+    protected void showLoading(boolean loading) {
+        executeViewOperation(() -> view.showLoading(loading));
+    }
+
+    protected void showError() {
+        executeViewOperation(() -> {
+            view.showError();
+            view.showLoading(false);
+        });
     }
 }

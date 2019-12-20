@@ -4,17 +4,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.abc.ethiopianrestaurants.R;
+import com.example.abc.ethiopianrestaurants.common.BaseActivity;
+import com.example.abc.ethiopianrestaurants.features.details.BusinessDetailsActivity;
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
 import com.example.abc.ethiopianrestaurants.network.NetworkClientProvider;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     private RecyclerView rvBusinesses;
     private View errorMessage;
@@ -23,10 +24,20 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private MainPresenter presenter;
 
     @Override
+    protected int getLayoutRes() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void bindViews() {
+        rvBusinesses = findViewById(R.id.home_page_rv_businesses);
+        errorMessage = findViewById(R.id.home_page_error_message);
+        progressBar = findViewById(R.id.home_page_progress_bar);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        bindViews();
         initRecyclerView();
 
         BusinessNetworkClient networkClient =
@@ -72,10 +83,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         errorMessage.setVisibility(View.VISIBLE);
     }
 
-    private void bindViews() {
-        rvBusinesses = findViewById(R.id.home_page_rv_businesses);
-        errorMessage = findViewById(R.id.home_page_error_message);
-        progressBar = findViewById(R.id.home_page_progress_bar);
+    @Override
+    public void navigateToDetails(String businessId) {
+        BusinessDetailsActivity.open(this, businessId);
     }
 
     private void initRecyclerView() {
@@ -83,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         rvBusinesses.setLayoutManager(gridLayoutManager);
 
         adapter = new BusinessListAdapter();
+        adapter.setItemClickedListener(business -> presenter.onBusinessItemClicked(business));
         rvBusinesses.setAdapter(adapter);
     }
 }

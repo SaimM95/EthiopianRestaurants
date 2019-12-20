@@ -33,20 +33,19 @@ class MainPresenter extends BasePresenter<MainView> {
                     if (Utils.isSafe(businesses)) {
                         executeViewOperation(() -> view.populateBusinesses(businesses));
                     } else {
-                        executeViewOperation(() -> view.showError());
+                        showError();
                     }
                     showLoading(false);
                 }
 
                 @Override
                 public void onError(Throwable throwable) {
-                    executeViewOperation(() -> view.showError());
-                    showLoading(false);
+                    showError();
                 }
             });
     }
 
-    private void showLoading(boolean loading) {
-        executeViewOperation(() -> view.showLoading(loading));
+    void onBusinessItemClicked(Business business) {
+        executeViewOperation(() -> view.navigateToDetails(business.id));
     }
 }

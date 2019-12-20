@@ -2,20 +2,19 @@ package com.example.abc.ethiopianrestaurants.network;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.example.abc.ethiopianrestaurants.model.GetBusinessesResponse;
 import com.example.abc.ethiopianrestaurants.model.GetReviewsResponse;
 import com.google.gson.Gson;
 
+import timber.log.Timber;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 public class MockNetworkClient implements BusinessNetworkClient {
-
-    private static final String TAG = MockNetworkClient.class.getCanonicalName();
 
     private final Context context;
 
@@ -70,7 +69,7 @@ public class MockNetworkClient implements BusinessNetworkClient {
             inputStream.close();
             json = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            Log.e(TAG, e.getMessage());
+            Timber.e(e);
             return null;
         }
         return json;
