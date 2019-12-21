@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Ethiopian Restaurants</string>
+
+    <!-- Errors -->
+    <string name="error_loading_businesses">Couldn\'t load businesses</string>
+
+    <!-- Reviews -->
     <string name="reviews_count_text">%d reviews</string>
+    <string name="reviews_heading">Reviews</string>
 </resources>

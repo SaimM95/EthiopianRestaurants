@@ -3,16 +3,19 @@ package com.example.abc.ethiopianrestaurants.features.details;
 import com.example.abc.ethiopianrestaurants.common.BasePresenter;
 import com.example.abc.ethiopianrestaurants.common.Utils;
 import com.example.abc.ethiopianrestaurants.model.Business;
+import com.example.abc.ethiopianrestaurants.model.GetReviewsResponse;
+import com.example.abc.ethiopianrestaurants.model.Review;
 import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
 import com.example.abc.ethiopianrestaurants.network.NetworkCallback;
 
 import androidx.annotation.Nullable;
 import timber.log.Timber;
 
+import java.util.List;
+
 class BusinessDetailsPresenter extends BasePresenter<BusinessDetailsView> {
 
     private BusinessNetworkClient businessNetworkClient;
-    @Nullable String businessId;
 
     BusinessDetailsPresenter(BusinessNetworkClient businessNetworkClient) {
         this.businessNetworkClient = businessNetworkClient;
@@ -24,23 +27,16 @@ class BusinessDetailsPresenter extends BasePresenter<BusinessDetailsView> {
             return;
         }
 
-        this.businessId = businessId;
         showLoading(true);
-        executeViewOperation(() -> view.setContentVisible(false));
 
+        // TODO: chain these two network calls
         businessNetworkClient.getBusinessDetails(businessId, new NetworkCallback<Business>() {
             @Override
             public void onSuccess(Business business) {
                 executeViewOperation(() -> {
-                    view.setContentVisible(true);
                     view.setTitle(business.name);
                     view.showImage(business.imageUrl);
-                    view.showRating(business.rating);
-                    view.showReviewsCount(business.reviewCount);
-                    view.showPhoneNumber(business.phone);
-                    if (business.location != null) {
-                        view.showAddress(business.location.address);
-                    }
+                    view.showBusinessDetails(business);
                 });
                 showLoading(false);
             }
@@ -51,11 +47,19 @@ class BusinessDetailsPresenter extends BasePresenter<BusinessDetailsView> {
                 showError();
             }
         });
-    }
 
-    void onReviewsClicked() {
-        if (Utils.isSafe(businessId)) {
-            executeViewOperation(() -> view.showReviews(businessId));
-        }
+        businessNetworkClient.getBusinessReviews(businessId,
+            new NetworkCallback<GetReviewsResponse>() {
+                @Override
+                public void onSuccess(GetReviewsResponse response) {
+                    List<Review> reviews = response.reviews;
+                    executeViewOperation(() -> view.showReviews(reviews));
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    Timber.e(throwable);
+                }
+            });
     }
 }

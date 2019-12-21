@@ -23,6 +23,7 @@ public final class SimpleVerticalDividerItemDecoration extends RecyclerView.Item
     private int height;
     private boolean lastItemHasDivider;
     private boolean firstItemHasTopDivider = false;
+    private int firstItemPosition = 0;
     private int leftMargin = 0;
     private int rightMargin = 0;
     private int topPadding = 0;
@@ -65,9 +66,12 @@ public final class SimpleVerticalDividerItemDecoration extends RecyclerView.Item
             return;
         }
 
-        boolean isFirstItem = parent.getChildAdapterPosition(view) == 0;
-        boolean isLastItem =
-            parent.getChildAdapterPosition(view) == parent.getAdapter().getItemCount() - 1;
+        int childPosition = parent.getChildAdapterPosition(view);
+        int lastItemPosition = parent.getAdapter().getItemCount() - 1;
+        boolean isFirstItem = childPosition == firstItemPosition;
+        boolean isLastItem = childPosition == lastItemPosition;
+        boolean isMiddleItem = childPosition > firstItemPosition
+            && childPosition < lastItemPosition;
 
         if (isFirstItem) {
             outRect.bottom = height + bottomPadding;
@@ -87,7 +91,7 @@ public final class SimpleVerticalDividerItemDecoration extends RecyclerView.Item
             if (paddingBelowLastItem) {
                 outRect.bottom += bottomPadding;
             }
-        } else {
+        } else if (isMiddleItem) {
             outRect.top = height + topPadding;
             outRect.bottom = height + bottomPadding;
         }
@@ -106,28 +110,40 @@ public final class SimpleVerticalDividerItemDecoration extends RecyclerView.Item
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams)child.getLayoutParams();
 
-            // draw top divider for first item (if enabled)
-            boolean isFirstItem = i == 0;
-            if (isFirstItem && firstItemHasTopDivider) {
-                top = child.getTop() + params.topMargin + topPadding;
-                bottom = top + height;
+            int lastItemPosition = childCount - 1;
+            boolean isFirstItem = i == firstItemPosition;
+            boolean isLastItem = i == lastItemPosition;
+            boolean isMiddleItem = i > firstItemPosition && i < lastItemPosition;
 
-                divider.setBounds(left, top, right, bottom);
-                divider.draw(canvas);
+            if (isFirstItem) {
+                if (firstItemHasTopDivider) {
+                    drawTopDivider(child, params, left, right, canvas);
+                }
+                drawBottomDivider(child, params, left, right, canvas);
+            } else if (isLastItem && lastItemHasDivider) {
+                drawBottomDivider(child, params, left, right, canvas);
+            } else if (isMiddleItem) {
+                drawBottomDivider(child, params, left, right, canvas);
             }
-
-            // draw bottom divider for all items (if applicable)
-            boolean isLastItem = i == childCount - 1;
-            if (!lastItemHasDivider && isLastItem) {
-                return;
-            }
-
-            top = child.getBottom() + params.bottomMargin + bottomPadding;
-            bottom = top + height;
-
-            divider.setBounds(left, top, right, bottom);
-            divider.draw(canvas);
         }
+    }
+
+    private void drawTopDivider(View child, RecyclerView.LayoutParams params, int left, int right,
+        Canvas canvas) {
+        int top = child.getTop() + params.topMargin + topPadding;
+        int bottom = top + height;
+
+        divider.setBounds(left, top, right, bottom);
+        divider.draw(canvas);
+    }
+
+    private void drawBottomDivider(View child, RecyclerView.LayoutParams params, int left,
+        int right, Canvas canvas) {
+        int top = child.getBottom() + params.bottomMargin + bottomPadding;
+        int bottom = top + height;
+
+        divider.setBounds(left, top, right, bottom);
+        divider.draw(canvas);
     }
 
     public static class Builder {
@@ -187,6 +203,11 @@ public final class SimpleVerticalDividerItemDecoration extends RecyclerView.Item
 
         public Builder addPaddingBelowLastItem(boolean shouldAddPadding) {
             decoration.paddingBelowLastItem = shouldAddPadding;
+            return this;
+        }
+
+        public Builder setFirstItemPosition(int firstItemPosition) {
+            decoration.firstItemPosition = firstItemPosition;
             return this;
         }
 

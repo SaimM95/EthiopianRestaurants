@@ -1,6 +1,10 @@
 package com.example.abc.ethiopianrestaurants.features.details;
 
 import com.example.abc.ethiopianrestaurants.common.BaseView;
+import com.example.abc.ethiopianrestaurants.model.Business;
+import com.example.abc.ethiopianrestaurants.model.Review;
+
+import java.util.List;
 
 public interface BusinessDetailsView extends BaseView {
 
@@ -8,15 +12,7 @@ public interface BusinessDetailsView extends BaseView {
 
     void showImage(String imageUrl);
 
-    void showRating(double rating);
+    void showBusinessDetails(Business business);
 
-    void showReviewsCount(int reviewsCount);
-
-    void showPhoneNumber(String phoneNumber);
-
-    void showAddress(String address);
-
-    void showReviews(String businessId);
-
-    void setContentVisible(boolean visible);
+    void showReviews(List<Review> reviews);
 }

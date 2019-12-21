@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.abc.ethiopianrestaurants.R;
-import com.example.abc.ethiopianrestaurants.common.AndroidUtils;
 import com.example.abc.ethiopianrestaurants.common.BaseActivity;
 import com.example.abc.ethiopianrestaurants.common.SimpleVerticalDividerItemDecoration;
+import com.example.abc.ethiopianrestaurants.model.Business;
+import com.example.abc.ethiopianrestaurants.model.Review;
 import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
 import com.example.abc.ethiopianrestaurants.network.NetworkClientProvider;
 import com.google.android.material.appbar.AppBarLayout;
@@ -19,9 +19,10 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class BusinessDetailsActivity extends BaseActivity implements BusinessDetailsView {
 
@@ -33,14 +34,9 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
     private AppBarLayout appBarLayout;
     private ProgressBar progressBar;
     private ImageView ivDetailsImage;
-    private AppCompatRatingBar ratingBar;
-    private TextView tvReviews;
-    private TextView tvPhone;
-    private TextView tvAddress;
-    private TextView tvReviewsHeading;
-    private RecyclerView rvReviews;
+    private RecyclerView rvBusinessDetails;
     private BusinessDetailsPresenter presenter;
-    private ReviewsListAdapter reviewsListAdapter;
+    private BusinessDetailsAdapter businessDetailsAdapter;
 
     private String title = EMPTY_TITLE;
 
@@ -62,12 +58,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
         appBarLayout = findViewById(R.id.business_details_app_bar_layout);
         progressBar = findViewById(R.id.business_details_progress_bar);
         ivDetailsImage = findViewById(R.id.business_details_image);
-        ratingBar = findViewById(R.id.business_details_rating_bar);
-        tvReviews = findViewById(R.id.business_details_tv_reviews);
-        tvPhone = findViewById(R.id.business_details_tv_phone_number);
-        tvAddress = findViewById(R.id.business_details_tv_address);
-        tvReviewsHeading = findViewById(R.id.business_details_tv_reviews_heading);
-        rvReviews = findViewById(R.id.business_details_rv_reviews);
+        rvBusinessDetails = findViewById(R.id.rv_business_details);
     }
 
     @Override
@@ -80,6 +71,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
         }
 
         initListeners();
+        initRecyclerView();
 
         BusinessNetworkClient networkClient =
             NetworkClientProvider.getBusinessNetworkClient(this);
@@ -118,98 +110,53 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
     }
 
     @Override
-    public void showRating(double rating) {
-//        ratingBar.setVisibility(View.VISIBLE);
-        ratingBar.setRating((float)rating);
+    public void showBusinessDetails(Business business) {
+        businessDetailsAdapter.updateBusinessDetails(business);
     }
 
     @Override
-    public void showReviewsCount(int reviewsCount) {
-//        tvReviews.setVisibility(View.VISIBLE);
-        tvReviews.setText(getString(R.string.reviews_count_text, reviewsCount));
-    }
-
-    @Override
-    public void showPhoneNumber(String phoneNumber) {
-//        tvPhone.setVisibility(View.VISIBLE);
-        tvPhone.setText(phoneNumber);
-    }
-
-    @Override
-    public void showAddress(String address) {
-//        tvAddress.setVisibility(View.VISIBLE);
-        tvAddress.setText(address);
-    }
-
-    @Override
-    public void showReviews(String businessId) {
-        // TODO: open dialog fragment
-    }
-
-    @Override
-    public void setContentVisible(boolean visible) {
-        ratingBar.setVisibility(visible ? View.VISIBLE : View.GONE);
-        tvReviews.setVisibility(visible ? View.VISIBLE : View.GONE);
-        tvPhone.setVisibility(visible ? View.VISIBLE : View.GONE);
-        tvAddress.setVisibility(visible ? View.VISIBLE : View.GONE);
-        tvReviewsHeading.setVisibility(visible ? View.VISIBLE : View.GONE);
+    public void showReviews(List<Review> reviews) {
+        businessDetailsAdapter.updateReviews(reviews);
     }
 
     @Override
     public void showLoading(boolean loading) {
         progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
-//        if (loading) {
-//            hideContent();
-//        }
     }
 
     @Override
     public void showError() {
-
-    }
-
-    private void hideContent() {
-        ratingBar.setVisibility(View.GONE);
-        tvReviews.setVisibility(View.GONE);
-        tvPhone.setVisibility(View.GONE);
-        tvAddress.setVisibility(View.GONE);
-        tvReviewsHeading.setVisibility(View.GONE);
+        // TODO
     }
 
     private void initListeners() {
         // TODO: check if this is bad for performance
-        //        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
-        //            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
-        //                toolbar.setTitle(title);
-        //            } else {
-        //                toolbar.setTitle(EMPTY_TITLE);
-        //            }
-        //        });
-
-        tvPhone.setOnClickListener(v ->
-            AndroidUtils.openPhoneIntent(this, tvPhone.getText().toString()));
-
-        tvAddress.setOnClickListener(v ->
-            AndroidUtils.openMapsIntent(this, tvAddress.getText().toString()));
-
-        tvReviewsHeading.setOnClickListener(v -> presenter.onReviewsClicked());
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
+            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
+                toolbar.setTitle(title);
+            } else {
+                toolbar.setTitle(EMPTY_TITLE);
+            }
+        });
     }
 
     private void initRecyclerView() {
-        reviewsListAdapter = new ReviewsListAdapter();
-        rvReviews.setAdapter(reviewsListAdapter);
+        businessDetailsAdapter = new BusinessDetailsAdapter();
+        rvBusinessDetails.setAdapter(businessDetailsAdapter);
 
         SimpleVerticalDividerItemDecoration itemDecoration =
             new SimpleVerticalDividerItemDecoration.Builder(this)
+                .setColorRes(R.color.review_items_list_divider_color)
                 .setFirstItemHasTopDivider(false)
                 .setLastItemHasDivider(false)
                 .setLeftMargin(R.dimen.review_item_divider_side_padding)
                 .setRightMargin(R.dimen.review_item_divider_side_padding)
-                .setColorRes(R.color.review_items_list_divider_color)
                 .setTopPadding(R.dimen.review_item_vertical_padding)
                 .setBottomPadding(R.dimen.review_item_vertical_padding)
-                .addPaddingAboveFirstItem(false)
+                .addPaddingAboveFirstItem(true)
+                .addPaddingBelowLastItem(true)
+                .setFirstItemPosition(1)
                 .build();
-        rvReviews.addItemDecoration(itemDecoration);
+        rvBusinessDetails.addItemDecoration(itemDecoration);
     }
 }
