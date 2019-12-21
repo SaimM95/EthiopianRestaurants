@@ -12,6 +12,7 @@ import timber.log.Timber;
 class BusinessDetailsPresenter extends BasePresenter<BusinessDetailsView> {
 
     private BusinessNetworkClient businessNetworkClient;
+    @Nullable String businessId;
 
     BusinessDetailsPresenter(BusinessNetworkClient businessNetworkClient) {
         this.businessNetworkClient = businessNetworkClient;
@@ -23,15 +24,23 @@ class BusinessDetailsPresenter extends BasePresenter<BusinessDetailsView> {
             return;
         }
 
+        this.businessId = businessId;
         showLoading(true);
+        executeViewOperation(() -> view.setContentVisible(false));
+
         businessNetworkClient.getBusinessDetails(businessId, new NetworkCallback<Business>() {
             @Override
             public void onSuccess(Business business) {
                 executeViewOperation(() -> {
+                    view.setContentVisible(true);
                     view.setTitle(business.name);
                     view.showImage(business.imageUrl);
                     view.showRating(business.rating);
                     view.showReviewsCount(business.reviewCount);
+                    view.showPhoneNumber(business.phone);
+                    if (business.location != null) {
+                        view.showAddress(business.location.address);
+                    }
                 });
                 showLoading(false);
             }
@@ -42,5 +51,11 @@ class BusinessDetailsPresenter extends BasePresenter<BusinessDetailsView> {
                 showError();
             }
         });
+    }
+
+    void onReviewsClicked() {
+        if (Utils.isSafe(businessId)) {
+            executeViewOperation(() -> view.showReviews(businessId));
+        }
     }
 }

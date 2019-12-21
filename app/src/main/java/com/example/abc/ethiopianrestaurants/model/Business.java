@@ -14,6 +14,7 @@ public class Business {
     @SerializedName("review_count") public final int reviewCount;
     @SerializedName("rating") public final double rating;
     @SerializedName("distance") public final double distance;
+    @SerializedName("phone") public final String phone;
     @SerializedName("location") public final Location location;
 
     @SerializedName("photos")
@@ -21,18 +22,19 @@ public class Business {
     public final List<String> photos;
 
     public Business(String id, String name, String imageUrl, int reviewCount, double rating,
-        double distance, Location location, @Nullable List<String> photos) {
+        double distance, String phone, Location location, @Nullable List<String> photos) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
         this.reviewCount = reviewCount;
         this.rating = rating;
         this.distance = distance;
+        this.phone = phone;
         this.location = location;
         this.photos = photos;
     }
 
-    static class Location {
+    public static class Location {
 
         @SerializedName("address1") public final String address;
         @SerializedName("city") public final String city;

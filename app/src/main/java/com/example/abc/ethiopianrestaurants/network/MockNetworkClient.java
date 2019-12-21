@@ -56,7 +56,7 @@ public class MockNetworkClient implements BusinessNetworkClient {
                 callback.onError(e);
             }
         };
-        new Handler().postDelayed(runnable, 2000);
+        new Handler().postDelayed(runnable, 1000);
     }
 
     private String loadFileFromAssets(String fileName) {

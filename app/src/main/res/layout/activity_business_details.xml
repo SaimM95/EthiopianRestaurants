@@ -64,8 +64,10 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/business_details_content_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
 
             <androidx.appcompat.widget.AppCompatRatingBar
                 android:id="@+id/business_details_rating_bar"
@@ -88,12 +90,56 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="58 reviews" />
 
-            <View
+            <TextView
+                android:id="@+id/business_details_tv_phone_number"
+                style="@style/heading"
                 android:layout_width="match_parent"
-                android:layout_height="2000dp"
-                android:layout_marginTop="16dp"
-                android:background="#dddddd"
-                app:layout_constraintTop_toBottomOf="@+id/business_details_tv_reviews" />
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="8dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:layout_constraintTop_toBottomOf="@+id/business_details_tv_reviews"
+                tools:text="(123) 456-7890" />
+
+            <TextView
+                android:id="@+id/business_details_tv_address"
+                style="@style/heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_place"
+                android:drawablePadding="8dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:layout_constraintTop_toBottomOf="@+id/business_details_tv_phone_number"
+                tools:text="123 Abc Street" />
+
+            <!-- TODO: move to string res -->
+            <TextView
+                android:id="@+id/business_details_tv_reviews_heading"
+                style="@style/heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reviews"
+                app:layout_constraintTop_toBottomOf="@+id/business_details_tv_address" />
+
+            <View
+                android:id="@+id/business_details_reviews_heading_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/review_items_list_divider_color"
+                app:layout_constraintTop_toBottomOf="@+id/business_details_tv_reviews_heading" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/business_details_rv_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/business_details_reviews_heading_divider" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

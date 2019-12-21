@@ -11,4 +11,12 @@ public interface BusinessDetailsView extends BaseView {
     void showRating(double rating);
 
     void showReviewsCount(int reviewsCount);
+
+    void showPhoneNumber(String phoneNumber);
+
+    void showAddress(String address);
+
+    void showReviews(String businessId);
+
+    void setContentVisible(boolean visible);
 }
