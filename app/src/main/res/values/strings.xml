@@ -8,4 +8,10 @@
     <!-- Reviews -->
     <string name="reviews_count_text">%d reviews</string>
     <string name="reviews_heading">Reviews</string>
+
+    <!-- Sort -->
+    <string name="sort_options_heading">Sort by</string>
+    <string name="sort_by_name">Name</string>
+    <string name="sort_by_rating">Rating</string>
+    <string name="sort_by_reviews_count">Reviews count</string>
 </resources>

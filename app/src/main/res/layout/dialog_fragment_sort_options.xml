@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sort_options_radio_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        style="@style/heading.big"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:text="@string/sort_options_heading" />
+
+    <RadioButton
+        android:id="@+id/sort_options_name"
+        style="@style/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_by_name" />
+
+    <RadioButton
+        android:id="@+id/sort_options_rating"
+        style="@style/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_by_rating" />
+
+    <RadioButton
+        android:id="@+id/sort_options_reviews_count"
+        style="@style/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_by_reviews_count" />
+
+</RadioGroup>
