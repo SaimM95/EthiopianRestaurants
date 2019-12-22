@@ -5,7 +5,7 @@ import com.example.abc.ethiopianrestaurants.model.Business;
 
 import java.util.List;
 
-public interface MainView extends BaseView {
+public interface HomeView extends BaseView {
 
     void populateBusinesses(List<Business> businesses);
 

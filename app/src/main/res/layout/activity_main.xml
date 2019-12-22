@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context=".features.home.MainActivity">
+    tools:context=".features.home.HomeActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_page_rv_businesses"

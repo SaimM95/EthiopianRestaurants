@@ -13,7 +13,7 @@ import timber.log.Timber;
 
 import java.util.List;
 
-class MainPresenter extends BasePresenter<MainView> {
+class HomePresenter extends BasePresenter<HomeView> {
 
     private static final String SEARCH_TERM = "Ehiopian";
     // Long/Lat for Toronto
@@ -24,7 +24,7 @@ class MainPresenter extends BasePresenter<MainView> {
     private final BusinessNetworkClient businessNetworkClient;
     @Nullable private Disposable disposable;
 
-    MainPresenter(BusinessNetworkClient businessNetworkClient) {
+    HomePresenter(BusinessNetworkClient businessNetworkClient) {
         this.businessNetworkClient = businessNetworkClient;
     }
 

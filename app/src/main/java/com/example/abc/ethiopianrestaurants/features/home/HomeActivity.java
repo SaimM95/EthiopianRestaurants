@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MainView {
+public class HomeActivity extends BaseActivity implements HomeView {
 
     private RecyclerView rvBusinesses;
     private View errorMessage;
     private View progressBar;
     private BusinessListAdapter adapter;
-    private MainPresenter presenter;
+    private HomePresenter presenter;
 
     @Override
     protected int getLayoutRes() {
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
         BusinessNetworkClient networkClient =
             NetworkClientProvider.getBusinessNetworkClient(this);
-        presenter = new MainPresenter(networkClient);
+        presenter = new HomePresenter(networkClient);
         presenter.bindView(this);
         presenter.onViewReady();
     }
