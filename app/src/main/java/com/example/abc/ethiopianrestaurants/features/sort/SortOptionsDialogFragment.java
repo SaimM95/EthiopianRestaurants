@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.abc.ethiopianrestaurants.R;
@@ -14,11 +15,29 @@ import androidx.annotation.Nullable;
 
 public class SortOptionsDialogFragment extends BottomSheetDialogFragment {
 
+    private RadioGroup radioGroup;
     @Nullable private OnSortOptionSelectedListener listener;
+    @Nullable private SortOption defaultOption;
 
-    public static SortOptionsDialogFragment newInstance(OnSortOptionSelectedListener listener) {
+    private RadioGroup.OnCheckedChangeListener onCheckedChangeListener = (group, checkedId) -> {
+        switch (checkedId) {
+            case R.id.sort_option_name:
+                invokeListener(SortOption.NAME);
+                break;
+            case R.id.sort_option_rating:
+                invokeListener(SortOption.RATING);
+                break;
+            case R.id.sort_option_reviews_count:
+                invokeListener(SortOption.REVIEWS);
+                break;
+        }
+    };
+
+    public static SortOptionsDialogFragment newInstance(OnSortOptionSelectedListener listener,
+        SortOption defaultOption) {
         SortOptionsDialogFragment fragment = new SortOptionsDialogFragment();
         fragment.setListener(listener);
+        fragment.setDefaultOption(defaultOption);
         return fragment;
     }
 
@@ -33,25 +52,38 @@ public class SortOptionsDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RadioGroup radioGroup = view.findViewById(R.id.sort_options_radio_group);
-        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            switch (checkedId) {
-                case R.id.sort_options_name:
-                    invokeListener(SortOption.NAME);
+        radioGroup = view.findViewById(R.id.sort_options_radio_group);
+        radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
+
+        if (defaultOption != null) {
+            switch (defaultOption) {
+                case NAME:
+                    setDefaultSelection(view, R.id.sort_option_name);
                     break;
-                case R.id.sort_options_rating:
-                    invokeListener(SortOption.RATING);
+                case RATING:
+                    setDefaultSelection(view, R.id.sort_option_rating);
                     break;
-                case R.id.sort_options_reviews_count:
-                    invokeListener(SortOption.REVIEWS);
+                case REVIEWS:
+                    setDefaultSelection(view, R.id.sort_option_reviews_count);
                     break;
             }
-        });
+        }
     }
 
     @SuppressWarnings("WeakerAccess")
     public void setListener(@Nullable OnSortOptionSelectedListener listener) {
         this.listener = listener;
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public void setDefaultOption(@Nullable SortOption defaultOption) {
+        this.defaultOption = defaultOption;
+    }
+
+    private void setDefaultSelection(View view, int id) {
+        radioGroup.setOnCheckedChangeListener(null);
+        ((RadioButton)view.findViewById(id)).setChecked(true);
+        radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
     }
 
     private void invokeListener(SortOption sortOption) {

@@ -15,11 +15,11 @@ import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
 import com.example.abc.ethiopianrestaurants.network.NetworkClientProvider;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import timber.log.Timber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +49,7 @@ public class HomeActivity extends BaseActivity implements HomeView, OnSortOption
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initListeners();
-        initRecyclerView();
+        initViews();
 
         BusinessNetworkClient networkClient =
             NetworkClientProvider.getBusinessNetworkClient(this);
@@ -100,6 +98,15 @@ public class HomeActivity extends BaseActivity implements HomeView, OnSortOption
     }
 
     @Override
+    public void showSortOptions(@Nullable SortOption selectedSortOption) {
+        DialogFragment dialogFragment = SortOptionsDialogFragment
+            .newInstance(this, selectedSortOption);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+            .addToBackStack(null);
+        dialogFragment.show(ft, dialogFragment.getClass().getCanonicalName());
+    }
+
+    @Override
     public void showError() {
         rvBusinesses.setVisibility(View.GONE);
         errorMessage.setVisibility(View.VISIBLE);
@@ -110,16 +117,10 @@ public class HomeActivity extends BaseActivity implements HomeView, OnSortOption
         BusinessDetailsActivity.open(this, businessId);
     }
 
-    private void initListeners() {
-        fabSort.setOnClickListener(v -> {
-            DialogFragment dialogFragment = SortOptionsDialogFragment.newInstance(this);
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
-                .addToBackStack(null);
-            dialogFragment.show(ft, dialogFragment.getClass().getCanonicalName());
-        });
-    }
+    private void initViews() {
+        fabSort.setOnClickListener(v -> presenter.onSortButtonClicked());
 
-    private void initRecyclerView() {
+        // init recycler view
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rvBusinesses.setLayoutManager(gridLayoutManager);
 

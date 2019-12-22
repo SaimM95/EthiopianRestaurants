@@ -73,8 +73,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
             getSupportActionBar().setTitle(null);
         }
 
-        initListeners();
-        initRecyclerView();
+        initViews();
 
         BusinessNetworkClient networkClient =
             NetworkClientProvider.getBusinessNetworkClient(this);
@@ -142,18 +141,17 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
         errorMessage.setVisibility(View.VISIBLE);
     }
 
-    private void initListeners() {
+    private void initViews() {
         // TODO: check if this is bad for performance
-//        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
-//            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
-//                toolbar.setTitle(title);
-//            } else {
-//                toolbar.setTitle(EMPTY_TITLE);
-//            }
-//        });
-    }
+        //        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
+        //            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
+        //                toolbar.setTitle(title);
+        //            } else {
+        //                toolbar.setTitle(EMPTY_TITLE);
+        //            }
+        //        });
 
-    private void initRecyclerView() {
+        // init recycler view
         businessDetailsAdapter = new BusinessDetailsAdapter();
         rvBusinessDetails.setAdapter(businessDetailsAdapter);
 

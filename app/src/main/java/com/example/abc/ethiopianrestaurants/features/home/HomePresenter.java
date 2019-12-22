@@ -35,6 +35,7 @@ class HomePresenter extends BasePresenter<HomeView> {
     private final BusinessNetworkClient businessNetworkClient;
     private List<Business> businesses = new ArrayList<>();
     @Nullable private Disposable disposable;
+    @Nullable private SortOption selectedSortOption;
 
     HomePresenter(BusinessNetworkClient businessNetworkClient) {
         this.businessNetworkClient = businessNetworkClient;
@@ -65,7 +66,12 @@ class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    void onSortButtonClicked() {
+        executeViewOperation(() -> view.showSortOptions(selectedSortOption));
+    }
+
     void onSortOptionSelected(SortOption sortOption) {
+        this.selectedSortOption = sortOption;
         switch (sortOption) {
             case NAME:
                 Collections.sort(businesses, SORT_BY_NAME);

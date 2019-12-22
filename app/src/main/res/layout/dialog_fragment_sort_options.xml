@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sort_options_radio_group"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,21 +14,22 @@
         android:text="@string/sort_options_heading" />
 
     <RadioButton
-        android:id="@+id/sort_options_name"
+        android:id="@+id/sort_option_name"
         style="@style/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sort_by_name" />
+        android:text="@string/sort_by_name"
+        tools:checked="true" />
 
     <RadioButton
-        android:id="@+id/sort_options_rating"
+        android:id="@+id/sort_option_rating"
         style="@style/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sort_by_rating" />
 
     <RadioButton
-        android:id="@+id/sort_options_reviews_count"
+        android:id="@+id/sort_option_reviews_count"
         style="@style/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
