@@ -71,7 +71,11 @@ class HomePresenter extends BasePresenter<HomeView> {
     }
 
     void onSortOptionSelected(SortOption sortOption) {
-        this.selectedSortOption = sortOption;
+        if (selectedSortOption == sortOption) {
+            return;
+        }
+
+        selectedSortOption = sortOption;
         switch (sortOption) {
             case NAME:
                 Collections.sort(businesses, SORT_BY_NAME);
