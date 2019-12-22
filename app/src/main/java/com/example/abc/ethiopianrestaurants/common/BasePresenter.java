@@ -23,9 +23,6 @@ public class BasePresenter<T extends BaseView> {
     }
 
     protected void showError() {
-        executeViewOperation(() -> {
-            view.showError();
-            view.showLoading(false);
-        });
+        executeViewOperation(() -> view.showError());
     }
 }

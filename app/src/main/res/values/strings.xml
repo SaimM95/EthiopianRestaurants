@@ -3,6 +3,7 @@
 
     <!-- Errors -->
     <string name="error_loading_businesses">Couldn\'t load businesses</string>
+    <string name="error_loading_business_details">Couldn\'t load business details</string>
 
     <!-- Reviews -->
     <string name="reviews_count_text">%d reviews</string>

@@ -4,7 +4,8 @@ import android.content.Context;
 
 public class NetworkClientProvider {
 
-    private static final boolean USE_MOCK = true;
+    // TODO fix this boolean
+    private static final boolean USE_MOCK = false;
 
     private NetworkClientProvider() {
         // empty
@@ -14,7 +15,6 @@ public class NetworkClientProvider {
         if (USE_MOCK) {
             return new MockNetworkClient(context);
         }
-        // TODO: return real client
-        return null;
+        return new RetrofitNetworkClient();
     }
 }

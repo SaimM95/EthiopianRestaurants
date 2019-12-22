@@ -3,6 +3,7 @@ package com.example.abc.ethiopianrestaurants.features.details;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -37,6 +38,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
     private RecyclerView rvBusinessDetails;
     private BusinessDetailsPresenter presenter;
     private BusinessDetailsAdapter businessDetailsAdapter;
+    private View errorMessage;
 
     private String title = EMPTY_TITLE;
 
@@ -59,6 +61,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
         progressBar = findViewById(R.id.business_details_progress_bar);
         ivDetailsImage = findViewById(R.id.business_details_image);
         rvBusinessDetails = findViewById(R.id.rv_business_details);
+        errorMessage = findViewById(R.id.business_details_error_message);
     }
 
     @Override
@@ -81,6 +84,12 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
         String businessId = getIntent() == null ? null
             : getIntent().getStringExtra(PARAM_BUSINESS_ID);
         presenter.onViewReady(businessId);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onViewDestroyed();
     }
 
     @Override
@@ -117,6 +126,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
     @Override
     public void showReviews(List<Review> reviews) {
         businessDetailsAdapter.updateReviews(reviews);
+        new Handler().post(() -> rvBusinessDetails.scrollToPosition(0));
     }
 
     @Override
@@ -126,18 +136,20 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
 
     @Override
     public void showError() {
-        // TODO
+        // TODO: some ting wong
+        rvBusinessDetails.setVisibility(View.GONE);
+        errorMessage.setVisibility(View.VISIBLE);
     }
 
     private void initListeners() {
         // TODO: check if this is bad for performance
-        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
-            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
-                toolbar.setTitle(title);
-            } else {
-                toolbar.setTitle(EMPTY_TITLE);
-            }
-        });
+//        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
+//            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
+//                toolbar.setTitle(title);
+//            } else {
+//                toolbar.setTitle(EMPTY_TITLE);
+//            }
+//        });
     }
 
     private void initRecyclerView() {

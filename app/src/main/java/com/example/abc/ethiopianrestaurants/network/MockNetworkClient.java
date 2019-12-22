@@ -1,18 +1,19 @@
 package com.example.abc.ethiopianrestaurants.network;
 
 import android.content.Context;
-import android.os.Handler;
 
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.example.abc.ethiopianrestaurants.model.GetBusinessesResponse;
 import com.example.abc.ethiopianrestaurants.model.GetReviewsResponse;
 import com.google.gson.Gson;
 
+import io.reactivex.Single;
 import timber.log.Timber;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
 
 public class MockNetworkClient implements BusinessNetworkClient {
 
@@ -23,40 +24,38 @@ public class MockNetworkClient implements BusinessNetworkClient {
     }
 
     @Override
-    public void getBusinesses(String searchTerm, double longitude, double latitude, int limit,
-        NetworkCallback<GetBusinessesResponse> callback) {
-        createMockResponse("businesses.json", callback, GetBusinessesResponse.class);
+    public Single<GetBusinessesResponse> getBusinesses(String searchTerm, double longitude,
+        double latitude, int limit) {
+        return createMockResponse("businesses.json", GetBusinessesResponse.class);
     }
 
     @Override
-    public void getBusinessDetails(String businessId, NetworkCallback<Business> callback) {
-        createMockResponse("business-details.json", callback, Business.class);
+    public Single<Business> getBusinessDetails(String businessId) {
+        return createMockResponse("business-details.json", Business.class);
     }
 
     @Override
-    public void getBusinessReviews(String businessId,
-        NetworkCallback<GetReviewsResponse> callback) {
-        createMockResponse("business-reviews.json", callback, GetReviewsResponse.class);
+    public Single<GetReviewsResponse> getBusinessReviews(String businessId) {
+        return createMockResponse("business-reviews.json", GetReviewsResponse.class);
     }
 
-    private <T> void createMockResponse(String fileName, NetworkCallback<T> callback,
-        Class<T> clazz) {
+    private <T> Single<T> createMockResponse(String fileName, Class<T> clazz) {
         String json = loadFileFromAssets(fileName);
-
-        // add delay to simulate loading
-        Runnable runnable = () -> {
+        Single<T> single = Single.create(e -> {
             try {
                 T response = new Gson().fromJson(json, clazz);
                 if (response != null) {
-                    callback.onSuccess(response);
+                    e.onSuccess(response);
                 } else {
-                    callback.onError(new Exception("Response is null"));
+                    e.onError(new Exception("Response is null"));
                 }
-            } catch (Exception e) {
-                callback.onError(e);
+            } catch (Exception exception) {
+                e.onError(exception);
             }
-        };
-        new Handler().postDelayed(runnable, 1000);
+        });
+
+        single = single.delay(1, TimeUnit.SECONDS);
+        return single;
     }
 
     private String loadFileFromAssets(String fileName) {
@@ -74,5 +73,4 @@ public class MockNetworkClient implements BusinessNetworkClient {
         }
         return json;
     }
-
 }

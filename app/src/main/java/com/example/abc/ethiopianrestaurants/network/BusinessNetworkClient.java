@@ -4,12 +4,14 @@ import com.example.abc.ethiopianrestaurants.model.Business;
 import com.example.abc.ethiopianrestaurants.model.GetBusinessesResponse;
 import com.example.abc.ethiopianrestaurants.model.GetReviewsResponse;
 
+import io.reactivex.Single;
+
 public interface BusinessNetworkClient {
 
-    void getBusinesses(String searchTerm, double longitude, double latitude, int limit,
-        NetworkCallback<GetBusinessesResponse> callback);
+    Single<GetBusinessesResponse> getBusinesses(String searchTerm, double latitude,
+        double longitude, int limit);
 
-    void getBusinessDetails(String businessId, NetworkCallback<Business> callback);
+    Single<Business> getBusinessDetails(String businessId);
 
-    void getBusinessReviews(String businessId, NetworkCallback<GetReviewsResponse> callback);
+    Single<GetReviewsResponse> getBusinessReviews(String businessId);
 }
