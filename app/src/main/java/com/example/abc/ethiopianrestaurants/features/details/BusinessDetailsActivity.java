@@ -96,6 +96,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
     protected void onStart() {
         super.onStart();
         presenter.bindView(this);
+        presenter.updateState();
     }
 
     @Override

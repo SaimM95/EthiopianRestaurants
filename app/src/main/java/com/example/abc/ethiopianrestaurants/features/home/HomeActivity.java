@@ -57,6 +57,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
     protected void onStart() {
         super.onStart();
         presenter.bindView(this);
+        presenter.updateState();
     }
 
     @Override
