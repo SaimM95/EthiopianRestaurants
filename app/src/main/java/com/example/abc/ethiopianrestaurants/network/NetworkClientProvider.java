@@ -2,9 +2,10 @@ package com.example.abc.ethiopianrestaurants.network;
 
 import android.content.Context;
 
+import com.example.abc.ethiopianrestaurants.BuildConfig;
+
 public class NetworkClientProvider {
 
-    // TODO fix this boolean
     private static final boolean USE_MOCK = false;
 
     private NetworkClientProvider() {
@@ -12,7 +13,7 @@ public class NetworkClientProvider {
     }
 
     public static BusinessNetworkClient getBusinessNetworkClient(Context context) {
-        if (USE_MOCK) {
+        if (BuildConfig.DEV_MODE && USE_MOCK) {
             return new MockNetworkClient(context);
         }
         return new RetrofitNetworkClient();

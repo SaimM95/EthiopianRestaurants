@@ -1,5 +1,7 @@
 package com.example.abc.ethiopianrestaurants.network;
 
+import com.example.abc.ethiopianrestaurants.BuildConfig;
+
 import org.jetbrains.annotations.NotNull;
 
 import okhttp3.Interceptor;
@@ -31,10 +33,11 @@ class RetrofitClient {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
             .addInterceptor(new HeaderInterceptor());
 
-        // TODO: logging interceptor should only be added for dev build
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        okHttpClientBuilder.addInterceptor(interceptor);
+        if (BuildConfig.DEV_MODE) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            okHttpClientBuilder.addInterceptor(interceptor);
+        }
 
         retrofit = new retrofit2.Retrofit.Builder()
             .baseUrl(BASE_URL)

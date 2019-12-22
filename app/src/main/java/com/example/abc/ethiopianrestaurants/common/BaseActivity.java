@@ -2,6 +2,8 @@ package com.example.abc.ethiopianrestaurants.common;
 
 import android.os.Bundle;
 
+import com.example.abc.ethiopianrestaurants.BuildConfig;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutRes());
         bindViews();
 
-        // TODO: should be used in dev mode only
-        if (Timber.forest().isEmpty()) {
+        if (BuildConfig.DEV_MODE && Timber.forest().isEmpty()) {
             Timber.plant(new Timber.DebugTree());
         }
     }

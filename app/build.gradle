@@ -10,13 +10,30 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'boolean', 'DEV_MODE', 'false'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "variant"
+
+    productFlavors {
+        dev {
+            buildConfigField 'boolean', 'DEV_MODE', 'true'
+            dimension "variant"
+        }
+        prod {
+            buildConfigField 'boolean', 'DEV_MODE', 'false'
+            dimension "variant"
+        }
+    }
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
