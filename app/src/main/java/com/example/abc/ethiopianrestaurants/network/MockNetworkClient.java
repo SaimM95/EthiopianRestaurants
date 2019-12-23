@@ -24,8 +24,12 @@ public class MockNetworkClient implements BusinessNetworkClient {
     }
 
     @Override
-    public Single<GetBusinessesResponse> getBusinesses(String searchTerm, double longitude,
-        double latitude, int limit) {
+    public Single<GetBusinessesResponse> getBusinesses(String searchTerm) {
+        return createMockResponse("businesses.json", GetBusinessesResponse.class);
+    }
+
+    @Override
+    public Single<GetBusinessesResponse> getBusinesses(String searchTerm, int limit) {
         return createMockResponse("businesses.json", GetBusinessesResponse.class);
     }
 

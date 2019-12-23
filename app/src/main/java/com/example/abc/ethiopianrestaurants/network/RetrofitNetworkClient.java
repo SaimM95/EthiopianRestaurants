@@ -8,6 +8,11 @@ import io.reactivex.Single;
 
 public class RetrofitNetworkClient implements BusinessNetworkClient {
 
+    // TODO
+    // Lat/Long for Toronto
+    private static final double LATITUDE = 43.651070;
+    private static final double LONGITUDE = -79.347015;
+
     private final YelpApi yelpApi;
 
     RetrofitNetworkClient() {
@@ -15,9 +20,13 @@ public class RetrofitNetworkClient implements BusinessNetworkClient {
     }
 
     @Override
-    public Single<GetBusinessesResponse> getBusinesses(String searchTerm, double latitude,
-        double longitude, int limit) {
-        return yelpApi.getNearbyBusinesses(searchTerm, latitude, longitude, limit);
+    public Single<GetBusinessesResponse> getBusinesses(String searchTerm) {
+        return yelpApi.getNearbyBusinesses(searchTerm, LATITUDE, LONGITUDE);
+    }
+
+    @Override
+    public Single<GetBusinessesResponse> getBusinesses(String searchTerm, int limit) {
+        return yelpApi.getNearbyBusinesses(searchTerm, LATITUDE, LONGITUDE, limit);
     }
 
     @Override

@@ -15,6 +15,12 @@ public interface YelpApi {
     Single<GetBusinessesResponse> getNearbyBusinesses(
         @Query("term") String term,
         @Query("latitude") double latitude,
+        @Query("longitude") double longitude);
+
+    @GET("/v3/businesses/search")
+    Single<GetBusinessesResponse> getNearbyBusinesses(
+        @Query("term") String term,
+        @Query("latitude") double latitude,
         @Query("longitude") double longitude,
         @Query("limit") int limit);
 

@@ -3,5 +3,5 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="review_items_list_divider_color">#E1E7ED</color>
+    <color name="list_item_divider_color">#E1E7ED</color>
 </resources>

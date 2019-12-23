@@ -4,6 +4,7 @@
     <!-- Errors -->
     <string name="error_loading_businesses">Couldn\'t load businesses</string>
     <string name="error_loading_business_details">Couldn\'t load business details</string>
+    <string name="error_loading_search_results">Couldn\'t load search results</string>
 
     <!-- Reviews -->
     <string name="reviews_count_text">%d reviews</string>
@@ -14,4 +15,9 @@
     <string name="sort_by_name">Name</string>
     <string name="sort_by_rating">Rating</string>
     <string name="sort_by_reviews_count">Reviews count</string>
+
+    <!-- Search -->
+    <string name="search_label">Search Results</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Type to search</string>
 </resources>

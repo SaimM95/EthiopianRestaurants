@@ -63,7 +63,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/review_items_list_divider_color"
+        android:background="@color/list_item_divider_color"
         app:layout_constraintTop_toBottomOf="@+id/business_details_tv_reviews_heading" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

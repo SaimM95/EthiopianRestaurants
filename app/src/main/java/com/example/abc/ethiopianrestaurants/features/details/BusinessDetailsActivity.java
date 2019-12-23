@@ -143,13 +143,13 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
 
     private void initViews() {
         // TODO: check if this is bad for performance
-        //        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
-        //            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
-        //                toolbar.setTitle(title);
-        //            } else {
-        //                toolbar.setTitle(EMPTY_TITLE);
-        //            }
-        //        });
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
+            if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
+                toolbar.setTitle(title);
+            } else {
+                toolbar.setTitle(EMPTY_TITLE);
+            }
+        });
 
         // init recycler view
         businessDetailsAdapter = new BusinessDetailsAdapter();
@@ -157,7 +157,7 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
 
         SimpleVerticalDividerItemDecoration itemDecoration =
             new SimpleVerticalDividerItemDecoration.Builder(this)
-                .setColorRes(R.color.review_items_list_divider_color)
+                .setColorRes(R.color.list_item_divider_color)
                 .setFirstItemHasTopDivider(false)
                 .setLastItemHasDivider(false)
                 .setLeftMargin(R.dimen.review_item_divider_side_padding)

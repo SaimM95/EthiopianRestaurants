@@ -1,7 +1,11 @@
 package com.example.abc.ethiopianrestaurants.features.home;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import com.example.abc.ethiopianrestaurants.R;
@@ -16,6 +20,7 @@ import com.example.abc.ethiopianrestaurants.network.NetworkClientProvider;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -35,7 +40,7 @@ public class HomeActivity extends BaseActivity implements HomeView, OnSortOption
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_main;
+        return R.layout.activity_home;
     }
 
     @Override
@@ -75,6 +80,18 @@ public class HomeActivity extends BaseActivity implements HomeView, OnSortOption
     protected void onStop() {
         super.onStop();
         presenter.unbindView();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu, menu);
+
+        SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView)menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
     }
 
     @Override

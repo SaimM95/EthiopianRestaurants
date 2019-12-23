@@ -16,13 +16,15 @@ public class Business {
     @SerializedName("distance") public final double distance;
     @SerializedName("phone") public final String phone;
     @SerializedName("location") public final Location location;
+    @SerializedName("categories") public final List<Category> categories;
 
     @SerializedName("photos")
     @Nullable
     public final List<String> photos;
 
     public Business(String id, String name, String imageUrl, int reviewCount, double rating,
-        double distance, String phone, Location location, @Nullable List<String> photos) {
+        double distance, String phone, Location location, List<Category> categories,
+        @Nullable List<String> photos) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -31,6 +33,7 @@ public class Business {
         this.distance = distance;
         this.phone = phone;
         this.location = location;
+        this.categories = categories;
         this.photos = photos;
     }
 
@@ -48,6 +51,17 @@ public class Business {
             this.zipCode = zipCode;
             this.country = country;
             this.state = state;
+        }
+    }
+
+    public class Category {
+
+        @SerializedName("alias") public final String alias;
+        @SerializedName("title") public final String title;
+
+        public Category(String alias, String title) {
+            this.alias = alias;
+            this.title = title;
         }
     }
 

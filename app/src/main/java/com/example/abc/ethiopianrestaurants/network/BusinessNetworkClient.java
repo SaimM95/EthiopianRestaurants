@@ -8,8 +8,9 @@ import io.reactivex.Single;
 
 public interface BusinessNetworkClient {
 
-    Single<GetBusinessesResponse> getBusinesses(String searchTerm, double latitude,
-        double longitude, int limit);
+    Single<GetBusinessesResponse> getBusinesses(String searchTerm);
+
+    Single<GetBusinessesResponse> getBusinesses(String searchTerm, int limit);
 
     Single<Business> getBusinessDetails(String businessId);
 

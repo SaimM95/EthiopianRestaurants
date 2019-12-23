@@ -11,7 +11,7 @@ import com.example.abc.ethiopianrestaurants.R;
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.squareup.picasso.Picasso;
 
-import org.jetbrains.annotations.Nullable;
+import androidx.annotation.Nullable;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRatingBar;

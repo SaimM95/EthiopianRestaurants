@@ -20,9 +20,6 @@ import java.util.List;
 class HomePresenter extends BasePresenter<HomeView> {
 
     private static final String SEARCH_TERM = "Ehiopian";
-    // Long/Lat for Toronto
-    private static final double LATITUDE = 43.651070;
-    private static final double LONGITUDE = -79.347015;
     private static final int LIMIT = 10;
 
     // Sort comparators
@@ -43,7 +40,7 @@ class HomePresenter extends BasePresenter<HomeView> {
 
     void onViewReady() {
         showLoading(true);
-        disposable = businessNetworkClient.getBusinesses(SEARCH_TERM, LATITUDE, LONGITUDE, LIMIT)
+        disposable = businessNetworkClient.getBusinesses(SEARCH_TERM, LIMIT)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally(() -> showLoading(false))
