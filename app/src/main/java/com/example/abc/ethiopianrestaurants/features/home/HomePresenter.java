@@ -19,7 +19,7 @@ import java.util.List;
 
 class HomePresenter extends BasePresenter<HomeView> {
 
-    private static final String SEARCH_TERM = "Ehiopian";
+    private static final String SEARCH_TERM = "ethiopian";
     private static final int LIMIT = 10;
 
     // Sort comparators

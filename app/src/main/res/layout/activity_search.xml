@@ -26,6 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/error_loading_search_results" />
+        android:text="@string/error_loading_search_results"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </FrameLayout>

@@ -136,13 +136,11 @@ public class BusinessDetailsActivity extends BaseActivity implements BusinessDet
 
     @Override
     public void showError() {
-        // TODO: some ting wong
         rvBusinessDetails.setVisibility(View.GONE);
         errorMessage.setVisibility(View.VISIBLE);
     }
 
     private void initViews() {
-        // TODO: check if this is bad for performance
         appBarLayout.addOnOffsetChangedListener((appBarLayout, offset) -> {
             if (Math.abs(offset) == appBarLayout.getTotalScrollRange()) {
                 toolbar.setTitle(title);
