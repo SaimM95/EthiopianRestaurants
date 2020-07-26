@@ -4,33 +4,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.abc.ethiopianrestaurants.R;
+import com.example.abc.ethiopianrestaurants.common.ListItem;
+import com.example.abc.ethiopianrestaurants.model.Business;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int VIEW_TYPE_CATEGORY = 1;
-    private static final int VIEW_TYPE_BUSINESS = 2;
-
-    private Set<String> categorySet = new HashSet<>();
-    private List<String> categorizedBusinesses = new ArrayList<>();
     private Map<String, Integer> categoryCountMap = new HashMap<>();
+    private List<ListItem> listItems = new ArrayList<>();
+    private OnSearchResultClickedListener clickListener;
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE_CATEGORY) {
+        ListItem.ViewType listItemViewType = ListItem.ViewType.values()[viewType];
+        if (listItemViewType == ListItem.ViewType.CATEGORY) {
             View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.view_search_result_category, parent, false);
             return new CategoryViewHolder(view);
@@ -43,34 +41,32 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        String name = categorizedBusinesses.get(position);
-        if (holder instanceof CategoryViewHolder) {
-            ((CategoryViewHolder)holder).bindView(name);
-        } else if (holder instanceof BusinessViewHolder) {
-            ((BusinessViewHolder)holder).bindView(name);
+        Object value = listItems.get(position).value;
+        if (holder instanceof CategoryViewHolder && value instanceof String) {
+            ((CategoryViewHolder)holder).bindView((String)value);
+        } else if (holder instanceof BusinessViewHolder && value instanceof Business) {
+            ((BusinessViewHolder)holder).bindView((Business)value);
         }
     }
 
     @Override
     public int getItemCount() {
-        return categorizedBusinesses.size();
+        return listItems.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        String item = categorizedBusinesses.get(position);
-        if (categorySet.contains(item)) {
-            return VIEW_TYPE_CATEGORY;
-        }
-        return VIEW_TYPE_BUSINESS;
+        return listItems.get(position).viewType.ordinal();
     }
 
-    void updateItems(Set<String> categorySet, List<String> categorizedBusinesses,
-        Map<String, Integer> categoryCountMap) {
-        this.categorySet = categorySet;
-        this.categorizedBusinesses = categorizedBusinesses;
+    void updateItems(List<ListItem> listItems, Map<String, Integer> categoryCountMap) {
+        this.listItems = listItems;
         this.categoryCountMap = categoryCountMap;
         notifyDataSetChanged();
+    }
+
+    void setOnSearchResultClickedListener(OnSearchResultClickedListener clickListener) {
+        this.clickListener = clickListener;
     }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
@@ -84,8 +80,8 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         void bindView(String categoryName) {
             if (categoryCountMap.containsKey(categoryName)) {
-                String text = String.format(Locale.CANADA, "%s (%d)", categoryName,
-                    categoryCountMap.get(categoryName));
+                String text = itemView.getContext().getString(R.string.search_result_category,
+                    categoryName, categoryCountMap.get(categoryName));
                 tvName.setText(text);
             }
         }
@@ -98,10 +94,29 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
         BusinessViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.search_result_business_name);
+
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position >= 0) {
+                    Object value = listItems.get(position).value;
+                    if (clickListener != null
+                        && value instanceof Business) {
+                        clickListener.onSearchResultClicked((Business)value);
+                        String toastText =
+                            itemView.getContext().getString(R.string.search_result_clicked_toast,
+                                ((Business)value).name);
+                        Toast.makeText(itemView.getContext(), toastText, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
-        void bindView(String businessName) {
-            tvName.setText(businessName);
+        void bindView(Business business) {
+            tvName.setText(business.name);
         }
+    }
+
+    interface OnSearchResultClickedListener {
+        void onSearchResultClicked(Business business);
     }
 }

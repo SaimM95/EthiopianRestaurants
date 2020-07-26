@@ -1,6 +1,7 @@
 package com.example.abc.ethiopianrestaurants.features.search;
 
 import com.example.abc.ethiopianrestaurants.common.BasePresenter;
+import com.example.abc.ethiopianrestaurants.common.ListItem;
 import com.example.abc.ethiopianrestaurants.model.Business;
 import com.example.abc.ethiopianrestaurants.model.GetBusinessesResponse;
 import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
@@ -43,40 +44,45 @@ class SearchPresenter extends BasePresenter<SearchView> {
         }
     }
 
+    void onBusinessClicked(Business business) {
+        executeViewOperation(() -> view.navigateToBusinessDetails(business.id));
+    }
+
+    @SuppressWarnings("ConstantConditions")
     private void onGetBusinessesSuccessful(GetBusinessesResponse response) {
         if (response == null) {
             showError();
         } else {
-            List<Business> businesses = response.businesses;
-            Map<String, List<String>> categoryBusinesses = new HashMap<>();
+            // Create map of category to businesses
+            Map<String, List<Business>> categoryBusinesses = new HashMap<>();
 
-            for (Business business : businesses) {
-                String businessName = business.name;
+            for (Business business : response.businesses) {
                 for (Business.Category category : business.categories) {
                     String categoryName = category.title;
                     if (categoryBusinesses.containsKey(categoryName)) {
-                        List<String> businessNames = categoryBusinesses.get(categoryName);
-                        businessNames.add(businessName);
+                        List<Business> businesses = categoryBusinesses.get(categoryName);
+                        businesses.add(business);
                     } else {
-                        List<String> businessNames = new ArrayList<>();
-                        businessNames.add(businessName);
-                        categoryBusinesses.put(categoryName, businessNames);
+                        List<Business> businesses = new ArrayList<>();
+                        businesses.add(business);
+                        categoryBusinesses.put(categoryName, businesses);
                     }
                 }
             }
 
-            List<String> categorizedBusinesses = new ArrayList<>();
+            List<ListItem> listItems = new ArrayList<>();
             Map<String, Integer> categoryCountMap = new HashMap<>();
 
             for (String categoryName : categoryBusinesses.keySet()) {
-                categorizedBusinesses.add(categoryName);
-                List<String> businessNames = categoryBusinesses.get(categoryName);
-                categorizedBusinesses.addAll(businessNames);
-                categoryCountMap.put(categoryName, businessNames.size());
+                listItems.add(new ListItem<>(ListItem.ViewType.CATEGORY, categoryName));
+                List<Business> businesses = categoryBusinesses.get(categoryName);
+                for (Business business : businesses) {
+                    listItems.add(new ListItem<>(ListItem.ViewType.BUSINESS, business));
+                }
+                categoryCountMap.put(categoryName, businesses.size());
             }
 
-            executeViewOperation(() -> view.showSearchResults(categoryBusinesses.keySet(),
-                categorizedBusinesses, categoryCountMap));
+            executeViewOperation(() -> view.showSearchResults(listItems, categoryCountMap));
         }
     }
 }

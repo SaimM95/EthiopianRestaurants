@@ -20,4 +20,6 @@
     <string name="search_label">Search Results</string>
     <string name="search_title">Search</string>
     <string name="search_hint">Type to search</string>
+    <string name="search_result_category">%s (%d)</string>
+    <string name="search_result_clicked_toast">Opening %s</string>
 </resources>

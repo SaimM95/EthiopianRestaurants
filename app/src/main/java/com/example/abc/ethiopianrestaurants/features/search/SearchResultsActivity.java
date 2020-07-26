@@ -7,7 +7,9 @@ import android.view.View;
 
 import com.example.abc.ethiopianrestaurants.R;
 import com.example.abc.ethiopianrestaurants.common.BaseActivity;
+import com.example.abc.ethiopianrestaurants.common.ListItem;
 import com.example.abc.ethiopianrestaurants.common.SimpleVerticalDividerItemDecoration;
+import com.example.abc.ethiopianrestaurants.features.details.BusinessDetailsActivity;
 import com.example.abc.ethiopianrestaurants.network.BusinessNetworkClient;
 import com.example.abc.ethiopianrestaurants.network.NetworkClientProvider;
 
@@ -15,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class SearchResultsActivity extends BaseActivity implements SearchView {
 
@@ -95,9 +96,13 @@ public class SearchResultsActivity extends BaseActivity implements SearchView {
     }
 
     @Override
-    public void showSearchResults(Set<String> categorySet, List<String> categorizedBusinesses,
-        Map<String, Integer> categoryCountMap) {
-        adapter.updateItems(categorySet, categorizedBusinesses, categoryCountMap);
+    public void showSearchResults(List<ListItem> listItems, Map<String, Integer> categoryCountMap) {
+        adapter.updateItems(listItems, categoryCountMap);
+    }
+
+    @Override
+    public void navigateToBusinessDetails(String businessId) {
+        BusinessDetailsActivity.open(this, businessId);
     }
 
     private void initViews() {
@@ -110,5 +115,7 @@ public class SearchResultsActivity extends BaseActivity implements SearchView {
                 .setLastItemHasDivider(false)
                 .build();
         rvSearchResults.addItemDecoration(itemDecoration);
+
+        adapter.setOnSearchResultClickedListener(business -> presenter.onBusinessClicked(business));
     }
 }
